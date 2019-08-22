@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'privacy']);
     }
 
     /**
@@ -27,5 +27,10 @@ class HomeController extends Controller
         $bappas = Bappa::all()->sortByDesc('votes');
         $no = 1;
         return view('home', compact('bappas', 'no'));
+    }
+
+    public function privacy()
+    {
+        return view('privacy');
     }
 }
